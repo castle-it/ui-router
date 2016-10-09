@@ -10,9 +10,18 @@ before_script:
   - ./nodeserver.sh > /dev/null &
   - git clone https://github.com/ui-router/core.git ui-router-core
 
+env: 
+  matrix:
+    # CORE_BRANCH specifies the branch of ui-router-core to include during build/test
+    # If CORE_BRANCH is empty, it will use the ui-router-core from npm dependencies
+    # as specified in package.json
+    - CORE_BRANCH=
+    - CORE_BRANCH=master
+     
+
 script:
+  - if [ $CORE_BRANCH -ne "" ] ; then git clone https://github.com/ui-router/core.git ui-router-core && pushd ui-router-core && git checkout $CORE_BRANCH && npm install && popd && npm install ./ui-router-core ; fi
   - npm test
-  - npm install ./ui-router-core && npm test
 
 sudo: false
 
