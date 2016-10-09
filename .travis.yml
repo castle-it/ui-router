@@ -20,7 +20,8 @@ env:
      
 
 script:
-  - if [ $CORE_BRANCH -ne "" ] ; then git clone https://github.com/ui-router/core.git ui-router-core && pushd ui-router-core && git checkout $CORE_BRANCH && npm install && popd && npm install ./ui-router-core ; fi
+  - echo "CORE_BRANCH = x${CORE_BRANCH}x";
+  - if [ "x${CORE_BRANCH}x -ne "xx" ] ; then git clone https://github.com/ui-router/core.git ui-router-core && pushd ui-router-core && git checkout ${CORE_BRANCH} && npm install && popd && npm install ./ui-router-core ; fi
   - npm test
 
 sudo: false
