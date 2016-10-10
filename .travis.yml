@@ -9,17 +9,19 @@ before_script:
   - npm install -g typescript
   - ./nodeserver.sh > /dev/null &
 
-env: 
+matrix:
+  allow_failures:
+  - env: CORE_BRANCH=
+
+env:
   matrix:
-    # CORE_BRANCH specifies the branch of ui-router-core to include during build/test
+    # CORE_BRANCH env variable specifies the branch of ui-router-core to use during build/test
+    # Each CORE_BRANCH listed here will trigger a SEPARATE job in travis
     - CORE_BRANCH=master
+
     # If CORE_BRANCH is empty, it will use the ui-router-core from npm dependencies
-    # as specified in package.json
+    # (as specified in package.json)
     - CORE_BRANCH=
-    # If multiple CORE_BRANCH are listed in the `matrix` section,
-    # each one will trigger a SEPARATE job in travis
-    allow_failures:
-    - env: CORE_BRANCH=
 
 script:
   - echo "CORE_BRANCH = x${CORE_BRANCH}x";
