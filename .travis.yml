@@ -23,9 +23,8 @@ script:
   - echo "CORE_BRANCH = x${CORE_BRANCH}x";
   - >
     if [ "x${CORE_BRANCH}x" != "xx" ] ; then 
-      git clone --depth=10 --branch="${CORE_BRANCH}" https://github.com/ui-router/core.git ui-router-core && 
-      npm install ./ui-router-core
-    ; fi
+      git clone --depth=10 --branch="${CORE_BRANCH}" https://github.com/ui-router/core.git ui-router-core && npm install ./ui-router-core ;
+    fi
   - npm test
 
 sudo: false
