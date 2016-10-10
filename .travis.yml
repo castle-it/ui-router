@@ -18,6 +18,8 @@ env:
     - CORE_BRANCH=
     # If multiple CORE_BRANCH are listed in the `matrix` section,
     # each one will trigger a SEPARATE job in travis
+    allow_failures:
+    - env: CORE_BRANCH=
 
 script:
   - echo "CORE_BRANCH = x${CORE_BRANCH}x";
