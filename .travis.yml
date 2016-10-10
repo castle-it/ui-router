@@ -12,11 +12,12 @@ before_script:
 env: 
   matrix:
     # CORE_BRANCH specifies the branch of ui-router-core to include during build/test
+    - CORE_BRANCH=master
     # If CORE_BRANCH is empty, it will use the ui-router-core from npm dependencies
     # as specified in package.json
     - CORE_BRANCH=
-    - CORE_BRANCH=master
-     
+    # If multiple CORE_BRANCH are listed in the `matrix` section,
+    # each one will trigger a SEPARATE job in travis
 
 script:
   - echo "CORE_BRANCH = x${CORE_BRANCH}x";
